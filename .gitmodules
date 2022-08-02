@@ -1,0 +1,3 @@
+[submodule "deps/ArtiApp"]
+	path = deps/ArtiApp
+	url = https://github.com/Erick3900/ArtiApp.git
