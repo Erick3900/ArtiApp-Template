@@ -9,15 +9,6 @@ set(CMAKE_CXX_STANDARD 17)
 add_subdirectory(deps/ArtiApp)
 
 #################################
-#      Enable measure FPS       #
-#################################
-target_compile_definitions(
-    ArtiApp PUBLIC
-        -DNDEBUG=1
-        -DARTI_MEASURE_FPS=1
-)
-
-#################################
 #    Application Executable     #
 #################################
 set(SOURCES
@@ -28,10 +19,20 @@ set(SOURCES
     src/Main.cpp
 )
 
+set(COMPILE_DEFINITIONS
+    -DNDEBUG=1
+    -DARTI_MEASURE_FPS=1
+)
+
 if ((${CMAKE_SYSTEM_NAME} MATCHES "Windows") AND NOT (${CMAKE_BUILD_TYPE} MATCHES "Debug"))
     add_executable(
         ArtiAppTemplate WIN32
             ${SOURCES}
+    )
+
+    set(COMPILE_DEFINITIONS
+        -DARTI_MEASURE_FPS=1
+        -DARTI_DISABLE_LOGGER=1
     )
 else()
     add_executable(
@@ -39,6 +40,14 @@ else()
             ${SOURCES}
     )
 endif()
+
+#################################
+#     Compile definitions       #
+#################################
+target_compile_definitions(
+    ArtiApp PUBLIC
+        ${COMPILE_DEFINITIONS}
+)
 
 target_include_directories(
     ArtiAppTemplate PUBLIC
