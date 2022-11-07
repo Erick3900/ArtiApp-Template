@@ -19,7 +19,7 @@ bool Application::onInit() {
     config.OversampleH = 3;
     config.OversampleV = 3;
 
-    io.Fonts->AddFontFromFileTTF("assets/JetBrainsMonoRegularNF.ttf", 32.0f, &config);
+    io.Fonts->AddFontFromFileTTF("assets/CaskaydiaCoveNF-Mono-Light.otf", 32.0f, &config);
 
     config.MergeMode = true;
 

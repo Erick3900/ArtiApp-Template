@@ -1,15 +1,17 @@
 #include <Main.hpp>
 
 #if defined(_WIN32) && !defined(NDEBUG)
-#include <Windows.h>
-int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszArgument, int nCmdShow) {
+#    include <Windows.h>
+#    define main_entry_point                                                                                           \
+        int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszArgument, int nCmdShow)
 #else
-int main()
+#    define main_entry_point int main()
 #endif
-{
+
+main_entry_point {
     Application app;
 
-    if (app.init("Arti App", {860, 640})) {
+    if (app.init("Arti App", { 860, 640 })) {
         return app.run();
     }
     return 0;
